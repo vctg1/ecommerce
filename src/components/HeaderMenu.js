@@ -11,7 +11,7 @@ export default function HeaderMenu(props){
             menu:false,
             text:'Home',
             page:'',
-            child:''
+            children:''
         },
         {
             id:2,
@@ -42,14 +42,14 @@ export default function HeaderMenu(props){
             menu:false,
             text: 'Contato',
             page: 'contato',
-            child:''
+            children:''
         },
         {
             id:5,
             menu:false,
             text: 'Sobre',
             page: 'sobre',
-            child:''
+            children:''
         },
     ]
     return(

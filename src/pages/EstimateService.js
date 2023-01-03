@@ -3,11 +3,10 @@ import React from "react";
 import EstimateTitle from "../components/service-components/EstimateTitle";
 
 
-export default function EstimateService(){
-    const matches = useMediaQuery('(min-width:600px)');
+export default function EstimateService(props){
     return(
         <Grid>
-            <EstimateTitle matches={matches}/>
+            <EstimateTitle matches={props.matches}/>
         </Grid>
     )
 }

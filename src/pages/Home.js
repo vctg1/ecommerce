@@ -4,6 +4,7 @@ import HomeCarousel from "../components/home-components/Carousel";
 import EastIcon from '@mui/icons-material/East';
 import HomeSearch from "../components/home-components/HomeSearch";
 import { Link } from "react-router-dom";
+import moldura from '../images/moldura.png'
 
 
 export default function Home(props){
@@ -23,7 +24,7 @@ export default function Home(props){
                     </Button>
                     </Link>
                 </Typography>
-                <HomeCarousel matches={props.matches}/>
+                <HomeCarousel properties={props.properties} matches={props.matches}/>
             </Grid>
         </Grid>
     )
