@@ -74,6 +74,7 @@ export default function HeaderMenu(props){
                             <Typography style={{cursor:'default', color:'white',margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`}}>
                                 {item.text}
                             </Typography>
+                            <Box>
                             <Paper 
                             style={{ 
                                 display:'grid',
@@ -81,7 +82,6 @@ export default function HeaderMenu(props){
                                 padding:'5px', 
                                 minWidth:`${props.matches?'':'90vw'}`,
                                 position:'absolute',
-                                marginTop:'12vh',
                                 gridTemplateColumns:'1fr 1fr'
                                 }}>
                                 {item.children.map(child => 
@@ -94,6 +94,7 @@ export default function HeaderMenu(props){
                                 </Link>
                                 )}
                             </Paper>
+                            </Box>
                     </Box>
                 }
                 </Box>
