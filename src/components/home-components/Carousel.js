@@ -1,17 +1,17 @@
 import React from "react";
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button, Grid, useMediaQuery } from '@mui/material'
+import { Paper, Button, Grid, useMediaQuery, Box } from '@mui/material'
 import casa1 from '../../images/casa1.jpg'
 import casa2 from '../../images/casa2.jpg'
 import casa3 from '../../images/casa3.jpg'
 import casa4 from '../../images/casa4.jpg'
 import casa5 from '../../images/casa5.jpg'
 import casa6 from '../../images/casa6.jpg'
+import moldura from '../../images/moldura.png'
 import { Link } from "react-router-dom";
 
 
-export default function HomeCarousel(){
-    const matches = useMediaQuery('(min-width:600px)');
+export default function HomeCarousel(props){
     var items = [
         {
             id: "1",
@@ -40,11 +40,21 @@ export default function HomeCarousel(){
     ]
 
     return (
-        <Carousel>
+        <Carousel navButtonsAlwaysVisible={props.matches} animation="fade" duration='500'>
             {
                 items.map( (item, i) => 
-                <Link to={`/servicos`}>
-                        <img style={{maxHeight:`${matches?'70vh':'28vh'}`}} src={item.img}/>
+                <Link target='_blank' to={item.img}>
+                    <Box style={{
+                    backgroundImage:`url('${item.img}')`,
+                    backgroundRepeat:'no-repeat',
+                    backgroundSize:'110%',
+                    minHeight:`${!props.matches?'25vh':'70vh'}`
+                    }}>
+                        <img src={moldura} style={{
+                            width:'100%',
+                            height:'90%'
+                        }}/>
+                    </Box>
                 </Link>
                 )
             }

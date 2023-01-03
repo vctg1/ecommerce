@@ -50,7 +50,8 @@ export default function HeaderMenu(props){
             text: 'Sobre',
             page: 'sobre',
             child:''
-        },]
+        },
+    ]
     return(
         <Collapse in={props.handleClick || props.matches} style={{gridColumn:'1 / span 2'}}>
             {
@@ -71,7 +72,7 @@ export default function HeaderMenu(props){
                         textAlign:'center',
                         height:`${props.matches?'5vh':''}`
                         }}>
-                            <Typography style={{cursor:'default', color:'white',margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`}}>
+                            <Typography style={{cursor:'context-menu', color:'white',margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`}}>
                                 {item.text}
                             </Typography>
                             <Box>

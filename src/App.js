@@ -7,7 +7,7 @@ import { React, useEffect, useState } from 'react';
 import EstimateService from './pages/EstimateService';
 
 export default function App() {
-  const matches = useMediaQuery('(min-width:600px)');
+  const matches = useMediaQuery('(min-width:800px)');
   let [fixed, setFixed] = useState(false);
   useEffect(function () {
     function posicaoScroll() {
@@ -26,7 +26,7 @@ export default function App() {
         <Header fixed={fixed} matches={matches}/>
         <Grid style={{padding:`${matches||!fixed?'10px':'10vh 10px'}`}}>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Home matches={matches} />}/>
           <Route path='/estimar-casa' element={<EstimateService/>}/>
         </Routes>
         </Grid>
