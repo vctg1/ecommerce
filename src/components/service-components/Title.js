@@ -1,14 +1,14 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-export default function BuyTitle(){
+export default function Title(props){
     return(
         <Typography style={{textAlign:'center'}}>
             <h1>
-                Comprar imóvel
+            {props.title}
             </h1>
             <h2>
-                Encontre a melhor casa para você!
+            {props.subtitle}
             </h2>
         </Typography>
     )

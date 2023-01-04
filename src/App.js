@@ -7,10 +7,12 @@ import { React, useEffect, useState } from 'react';
 import EstimateService from './pages/EstimateService';
 import BuyService from './pages/BuyService';
 import {houses} from './components/PropertyImports'
+import SearchResult from './pages/SearchResult';
 
 export default function App() {
-  let properties = houses();
   const matches = useMediaQuery('(min-width:800px)');
+  let properties = houses();
+  let [search, setSearch] = useState('');
   let [fixedState, setFixedState] = useState(false);
   useEffect(function () {
     function posicaoScroll() {
@@ -29,9 +31,10 @@ export default function App() {
         <Header fixed={fixedState} matches={matches}/>
         <Grid style={{padding:`${matches||!fixedState?'10px':'10vh 10px'}`}}>
         <Routes>
-          <Route path='/' element={<Home properties={properties} matches={matches} />}/>
+          <Route path='/' element={<Home search={search} setSearch={setSearch} properties={properties} matches={matches} />}/>
           <Route path='/estimar-casa' element={<EstimateService matches={matches}/>}/>
           <Route path='/comprar' element={<BuyService properties={properties} matches={matches}/>}/>
+          <Route path={`/pesquisa/${search}`} element={<SearchResult search={search} setSearch={setSearch} properties={properties} matches={matches}/>}/>
         </Routes>
         </Grid>
       </BrowserRouter>

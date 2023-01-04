@@ -10,7 +10,7 @@ import moldura from '../images/moldura.png'
 export default function Home(props){
     return(
         <Grid>
-            <HomeSearch/>
+            <HomeSearch search={props.search} setSearch={props.setSearch}/>
             <Grid display='grid' gridTemplateColumns={props.matches?'1fr 1.5fr':'1fr'} bgcolor='#eeeee4'>
                 <Typography margin='30px' textAlign='end' fontSize='18px'>
                     Com a fonte mais completa de casas à venda e imóveis perto de você<br/>
