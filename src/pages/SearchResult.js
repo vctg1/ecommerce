@@ -1,16 +1,16 @@
 import { Box, CircularProgress, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Title from "../components/service-components/Title";
-import HouseBox from "../components/service-components/HouseBox";
 import SearchBar from "../components/home-components/SearchBar";
+import BuyHousesList from "../components/service-components/BuyHousesList"
 
 export default function SearchResult(props){
-    let [search, setSearch] = useState(sessionStorage.getItem('pesquisa'));
-    let [results, setResults] = useState([]);
+    let [search, setSearch] = useState(props.search);
+    let [properties, setProperties] = useState([]);
     let [loading, setLoading] = useState(true);
     useEffect(()=>{
         if(search){
-        setResults(props.properties.filter(item=> 
+        setProperties(props.properties.filter(item=> 
             item.suburb.toLowerCase().includes(search.toLowerCase()) 
             || item.address.toLowerCase().includes(search)
             || item.price.toString().includes(search)
@@ -18,29 +18,25 @@ export default function SearchResult(props){
             ));
         }
         else{
-            setResults(props.properties)
+            setProperties(props.properties)
         }
     },[sessionStorage.getItem('pesquisa')])
     useEffect(()=>{
-        if(results.length > 0){
+        if(properties.length > 0){
             setLoading(false);
         }
         else{
         setTimeout(()=>setLoading(false), 3000)
         }
-    },[results])
+    },[properties])
     return(
         <Grid>
             <SearchBar search={search} setSearch={setSearch}/>
-        {results.length > 0 && !loading ?
-            <>
-            <Title title='Resultados da pesquisa para:' subtitle={sessionStorage.getItem('pesquisa')} />
-            <Grid display='grid' columnGap='30px' rowGap='10px' gridTemplateColumns={`${props.matches ? '1fr 1fr 1fr' : '1fr'}`}>
-                {results.map(item=>
-                <HouseBox item={item} />
-                )}
+            {properties.length > 0 && !loading ?
+            <Grid>
+                <Title title='Resultados da pesquisa para:' subtitle={sessionStorage.getItem('pesquisa')} />
+                <BuyHousesList properties={properties} matches={props.matches}/>
             </Grid>
-                </>
             :<Box display='grid' justifyContent='center'>
             {loading?
                 <CircularProgress size='10em' sx={{marginTop:'5em'}} />

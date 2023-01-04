@@ -7,23 +7,25 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function SearchBar(props){
-    let [hiddenState, setHiddenState] = useState(false);
     const navigate = useNavigate();
+    let [blockSearch, setBlockSearch] = useState(false);
     let handleSubmit =e=>{
         e.preventDefault();
         navigate(`/pesquisa/${props.search}`);
     }
-    let handleSubmit2 =e=>{
-        e.preventDefault();
+    let handleSubmitBlock=e=>{
+        e.preventDefault()
     }
     useEffect(()=>{
-        if(window.location.href.includes('pesquisa')){
-            setHiddenState(true);
+        if(window.location.href.includes('pesquisa')
+        || window.location.href.includes('alugar')
+        ){
+            setBlockSearch(true)
         }
     },[])
     return(
         <Grid style={{display:'flex', justifyContent:'center'}}>
-                <form onSubmit={!hiddenState? handleSubmit : handleSubmit2}>
+                <form onSubmit={!blockSearch ? handleSubmit : handleSubmitBlock}>
                     <Box style={{display:'flex',borderRadius:'5px', backgroundColor:'white', justifyContent:'center',paddingLeft:'5px' , alignItems:'center', maxWidth:'350px'}}>
                         <TextField onChange={(e)=>{ 
                             props.setSearch(e.target.value);

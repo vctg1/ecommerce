@@ -8,6 +8,7 @@ import EstimateService from './pages/EstimateService';
 import BuyService from './pages/BuyService';
 import {houses} from './components/PropertyImports'
 import SearchResult from './pages/SearchResult';
+import RentService from './pages/RentService';
 
 export default function App() {
   const matches = useMediaQuery('(min-width:800px)');
@@ -33,7 +34,8 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home search={search} setSearch={setSearch} properties={properties} matches={matches} />}/>
           <Route path='/estimar-casa' element={<EstimateService matches={matches}/>}/>
-          <Route path='/comprar' element={<BuyService properties={properties} matches={matches}/>}/>
+          <Route path='/comprar' element={<BuyService search={search} setSearch={setSearch} properties={properties} matches={matches}/>}/>
+          <Route path='/alugar' element={<RentService search={search} setSearch={setSearch} properties={properties} matches={matches}/>}/>
           <Route path={`/pesquisa/${search}`} element={<SearchResult search={search} setSearch={setSearch} properties={properties} matches={matches}/>}/>
         </Routes>
         </Grid>

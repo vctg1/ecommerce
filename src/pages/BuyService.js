@@ -1,13 +1,17 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Title from "../components/service-components/Title";
 import BuyHousesList from "../components/service-components/BuyHousesList";
+import SearchBar from '../components/home-components/SearchBar'
 
 export default function BuyService(props){
     return(
         <Grid>
             <Title title='Comprar imóvel' subtitle='Encontre a melhor casa para você!' />
-            <BuyHousesList matches={props.matches} properties={props.properties}/>
+            <SearchBar search={props.search} setSearch={props.setSearch}/>
+            <Grid marginTop='1em'>
+                <BuyHousesList matches={props.matches} properties={props.properties}/>
+            </Grid>
         </Grid>
     )
 }
