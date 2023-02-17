@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/ecommerce/static/css/main.073c9b0a.css",
+    "main.js": "/ecommerce/static/js/main.dd98707a.js",
+    "static/js/787.dcc73137.chunk.js": "/ecommerce/static/js/787.dcc73137.chunk.js",
+    "static/media/houseBackground.png": "/ecommerce/static/media/houseBackground.5f06ee259c0a525d9308.png",
+    "static/media/casa3.jpg": "/ecommerce/static/media/casa3.d96333f7d0fe1bbf1004.jpg",
+    "static/media/casa6.jpg": "/ecommerce/static/media/casa6.04248c75043ea7113a4c.jpg",
+    "static/media/casa1.jpg": "/ecommerce/static/media/casa1.7f33c0710d9afe093811.jpg",
+    "static/media/casa4.jpg": "/ecommerce/static/media/casa4.d60668251a3a85b87386.jpg",
+    "static/media/casa2.jpg": "/ecommerce/static/media/casa2.1ae169671cff68b23cd9.jpg",
+    "static/media/casa5.jpg": "/ecommerce/static/media/casa5.42fd1ed5b5d256d71485.jpg",
+    "static/media/moldura.png": "/ecommerce/static/media/moldura.865cc67b5d8c7336281e.png",
+    "static/media/logo.png": "/ecommerce/static/media/logo.49c7a384c4695019255d.png",
+    "index.html": "/ecommerce/index.html",
+    "main.073c9b0a.css.map": "/ecommerce/static/css/main.073c9b0a.css.map",
+    "main.dd98707a.js.map": "/ecommerce/static/js/main.dd98707a.js.map",
+    "787.dcc73137.chunk.js.map": "/ecommerce/static/js/787.dcc73137.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.dd98707a.js"
+  ]
+}
