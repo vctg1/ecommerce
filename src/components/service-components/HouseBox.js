@@ -1,8 +1,23 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HouseBox(props){
-    let [price, setPrice] = useState(props.item.price)
+    const navigate = useNavigate();
+    let [price, setPrice] = useState(props.item.price);
+    let [mouseOver, setMouseOver] = useState(false);
+    let handleMouse =e=>{
+        e.preventDefault();
+        setMouseOver(true)
+    }
+    let handleMouseOut =e=>{
+        e.preventDefault();
+        setMouseOver(false)
+    }
+    let handleClick =e=>{
+        e.preventDefault();
+        navigate('/');
+    }
     let [purchaseType, setPurchaseType] = useState('')
     useEffect(()=>{
         if(window.location.href.includes('alugar')){
@@ -11,8 +26,15 @@ export default function HouseBox(props){
         }
     },[])
     return(
-        <Box display='grid' justifyContent='center' borderRadius='15px' bgcolor={'#eeeee4'}>
-            <img src={props.item.images.image1} width='100%' style={{justifySelf:'center', borderRadius:'15px 15px 0 0'}}>
+        <Paper style={{scale:mouseOver?'110%':'', transition:'100ms'}} elevation={10} display='grid' justifyContent='center' bgcolor={'#eeeee4'}>
+            <img onClick={handleClick} onMouseOver={handleMouse} onMouseOut={handleMouseOut} 
+                src={props.item.images.image1} width='100%'
+                style={{
+                    maxHeight:'60%',
+                    opacity:'.9',
+                    cursor:'pointer',
+                    justifySelf:'center', 
+                    borderRadius:'5px 5px 0 0'}}>
             </img>
             <Typography component='ul' style={{listStylePosition:'inside'}}>
                 <Typography variant="h5">
@@ -29,6 +51,6 @@ export default function HouseBox(props){
                     {props.item.description}
                 </Typography>
             </Typography>
-        </Box>
+        </Paper>
     )
 }

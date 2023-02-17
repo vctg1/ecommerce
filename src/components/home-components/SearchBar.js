@@ -39,8 +39,8 @@ export default function SearchBar(props){
                             <ClearIcon sx={{color:'black'}}fontSize="small"/>
                         </button>
                         :<></>}
-                            <Button type="submit">
-                            <SearchIcon sx={{color:'green'}} fontSize="large"/>
+                            <Button size="fit-content" type="submit">
+                            <SearchIcon sx={{color:'green'}} fontSize="medium"/>
                             </Button>
                         </Box>
                     </Box>

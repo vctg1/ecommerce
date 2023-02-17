@@ -31,9 +31,7 @@ export default function RentService(props){
     },[properties])
     return(
         <Grid>
-            {loading?
-            <CircularProgress size='10em' sx={{marginTop:'5em'}} />
-            :search && properties.length < 1?
+            {search && properties.length < 1?
             <></>
             :<Title title='Alugar imóvel' subtitle='Encontre sua moradia!' />}
             <SearchBar search={search} setSearch={setSearch}/>

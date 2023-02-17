@@ -5,6 +5,14 @@ import { Link } from "react-router-dom";
 export default function HeaderMenu(props){
     let [mouseIn, setMouseIn] = useState(false);
     let [activeId, setActiveId] = useState(0);
+    function handleMouse(e){
+        setMouseIn(true);
+        setActiveId(e.id)
+    }
+    let handleMouseOut=e=>{
+        e.preventDefault();
+        setMouseIn(false)
+    }
     let routes = [
         {
             id:1,
@@ -59,11 +67,14 @@ export default function HeaderMenu(props){
                 <Box display={props.matches?'inline-flex':''}>
                 {!item.menu?   
                     <Link style={{textDecoration:'none', display:'flex', justifyContent:'center'}} to={`/${item.page}`}>
-                            <Typography style={{margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`, color:'white'}}>
+                            <Typography variant='button' onMouseOver={()=>handleMouse(item)} onMouseOut={handleMouseOut}
+                            style={{
+                                margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`, 
+                                color:`${mouseIn && activeId===item.id?'lightgreen':'white'}`}}>
                                 {item.text}
                             </Typography>
                     </Link>:
-                    <Box onMouseEnter={()=>{setActiveId(item.id); setMouseIn(true)}} onMouseLeave={()=> setMouseIn(false)} 
+                    <Box onMouseOver={()=>handleMouse(item)} onMouseOut={handleMouseOut} 
                     style={{
                         textDecoration:'none', 
                         display:'flex', 
@@ -72,14 +83,19 @@ export default function HeaderMenu(props){
                         textAlign:'center',
                         height:`${props.matches?'5vh':''}`
                         }}>
-                            <Typography style={{cursor:'context-menu', color:'white',margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`}}>
+                            <Typography variant="button" 
+                            style={{
+                                cursor:'context-menu', 
+                                color:`${mouseIn && activeId===item.id?'lightgreen':'white'}`,
+                                margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`}}>
                                 {item.text}
                             </Typography>
                             <Box>
-                            <Paper 
+                            <Paper
                             style={{ 
                                 display:'grid',
-                                visibility:`${mouseIn && activeId===item.id?'':'hidden'}`,
+                                scale:`${mouseIn && activeId===item.id?'100%':'0'}`,
+                                transition:'100ms',
                                 padding:'5px', 
                                 minWidth:`${props.matches?'':'90vw'}`,
                                 position:'absolute',

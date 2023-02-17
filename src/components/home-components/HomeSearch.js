@@ -1,23 +1,25 @@
-import { Grid, Typography} from '@mui/material';
-import houseBackground from '../../images/houseBackground.jpg'
+import { Grid, Paper, Typography} from '@mui/material';
+import houseBackground from '../../images/houseBackground.png'
 import SearchBar from './SearchBar';
 
 
 export default function HomeSearch(props) {
     return(
-        <Grid style={{backgroundImage: `url(${houseBackground})`, backgroundPosition: 'center',minHeight:'70vh' }}>  
-            <Typography marginX='30px' textAlign='center' color='white' fontFamily='serif'>
-                <h1 style={{margin:0}}>À cada um, seu próprio lar.</h1>
-                <h2>
-                Imóveis à venda e locação em Brasília/DF
-                </h2>
+        <Paper style={{
+            backgroundImage: `url(${houseBackground})`, 
+            backgroundPosition: 'center',
+            minHeight:'50vh',
+            backgroundSize:'cover'
+            }}>  
+            <Typography variant={props.matches? 'h3':'h4'} paddingY='2vh' textAlign='center' color='white' fontFamily='serif'>
+                <b>
+                À cada um, seu próprio lar.
+                </b>
             </Typography>
-            <Typography margin='5vh 0 15vh 0' textAlign='center' color='white' fontFamily='arial'>
-                <h2>
+            <Typography variant='h6' margin='1vh 5vw 10vh 5vw' textAlign='center' color='white' fontFamily='arial'>
                 <b>Vamos encontrar uma casa perfeita para você!</b>
-                </h2>
             </Typography>
             <SearchBar search={props.search} setSearch={props.setSearch} />
-        </Grid>
+        </Paper>
     )
 }

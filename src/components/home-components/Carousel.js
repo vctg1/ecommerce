@@ -10,19 +10,16 @@ export default function HomeCarousel(props){
         <Carousel navButtonsAlwaysVisible={props.matches} animation="fade" duration='500'>
             {
                 props.properties.map( (item, i) => 
-                <Link target='_blank' to={item.images.image1}>
                     <Box style={{
-                    backgroundImage:`url('${item.images.image1}')`,
-                    backgroundRepeat:'no-repeat',
-                    backgroundSize:'110%',
-                    minHeight:`${!props.matches?'25vh':'70vh'}`
+                        opacity:'.9',
+                        backgroundImage:`url('${item.images.image1}')`,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        minHeight:`${!props.matches?'25vh':'70vh'}`,
+                        borderRadius:'5px'
                     }}>
-                        <img src={moldura} style={{
-                            width:'100%',
-                            height:'90%'
-                        }}/>
+                        <img src={moldura} width='100%'/>
                     </Box>
-                </Link>
                 )
             }
         </Carousel>
