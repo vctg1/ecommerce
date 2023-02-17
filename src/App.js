@@ -28,7 +28,7 @@ export default function App() {
   }, []);
   return (
     <Grid>
-      <BrowserRouter basename={`/`}>
+      <BrowserRouter basename={`/ecommerce`}>
         <Header fixed={fixedState} matches={matches}/>
         <Grid style={{padding:`${matches||!fixedState?'10px':'10vh 10px'}`}}>
         <Routes>
