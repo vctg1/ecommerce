@@ -95,6 +95,7 @@ export default function HeaderMenu(props){
                             style={{ 
                                 display:'grid',
                                 scale:`${mouseIn && activeId===item.id?'100%':'0'}`,
+                                visibility:`${mouseIn && activeId===item.id?'visible':'hidden'}`,
                                 transition:'100ms',
                                 padding:'5px', 
                                 minWidth:`${props.matches?'':'90vw'}`,
