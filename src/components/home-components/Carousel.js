@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 
 
 export default function HomeCarousel(props){
+    let properties = props.properties.filter(prop => prop.images[0])
     return (
         <Carousel navButtonsAlwaysVisible={props.matches} animation="fade" duration='500'>
             {
-                props.properties.map( (item, i) => 
+                properties.slice(0,5).map( (item, i) => 
                     <Box style={{
                         opacity:'.9',
-                        backgroundImage:`url('${item.images.image1}')`,
+                        backgroundImage:`url('${item.images[0].image_url}')`,
                         backgroundRepeat:'no-repeat',
                         backgroundSize:'cover',
                         minHeight:`${!props.matches?'25vh':'70vh'}`,

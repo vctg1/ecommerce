@@ -6,13 +6,13 @@ import { Grid, useMediaQuery } from '@mui/material';
 import { React, useEffect, useState } from 'react';
 import EstimateService from './pages/EstimateService';
 import BuyService from './pages/BuyService';
-import {houses} from './components/PropertyImports'
+import {Houses} from './components/PropertyImports'
 import SearchResult from './pages/SearchResult';
 import RentService from './pages/RentService';
 
 export default function App() {
   const matches = useMediaQuery('(min-width:800px)');
-  let properties = houses();
+  let properties = Houses();
   let [search, setSearch] = useState('');
   let [fixedState, setFixedState] = useState(false);
   useEffect(function () {

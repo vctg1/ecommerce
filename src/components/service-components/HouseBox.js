@@ -27,15 +27,20 @@ export default function HouseBox(props){
     },[])
     return(
         <Paper style={{scale:mouseOver?'110%':'', transition:'100ms'}} elevation={10} display='grid' justifyContent='center' bgcolor={'#eeeee4'}>
-            <img onClick={handleClick} onMouseOver={handleMouse} onMouseOut={handleMouseOut} 
-                src={props.item.images.image1} width='100%'
+            <div onClick={handleClick} onMouseOver={handleMouse} onMouseOut={handleMouseOut} 
+                width='100%'
                 style={{
-                    maxHeight:'60%',
+                    backgroundImage:`url(${props.item.images[0] ? props.item.images[0].image_url :
+                    'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'})`,
+                    height:'30vh',
                     opacity:'.9',
                     cursor:'pointer',
                     justifySelf:'center', 
-                    borderRadius:'5px 5px 0 0'}}>
-            </img>
+                    borderRadius:'5px 5px 0 0',
+                    backgroundSize:'cover',
+                    backgroundPosition:'center'
+                    }}>
+            </div>
             <Typography component='ul' style={{listStylePosition:'inside'}}>
                 <Typography variant="h5">
                     {props.item.suburb}
