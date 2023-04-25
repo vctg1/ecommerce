@@ -30,7 +30,7 @@ export default function SearchResult(props){
         }
     },[properties])
     return(
-        <Grid>
+        <Grid marginTop={'1rem'}>
             <SearchBar search={search} setSearch={setSearch}/>
             {properties.length > 0 && !loading ?
             <Grid>

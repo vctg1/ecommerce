@@ -13,9 +13,10 @@ export default function HomeCarousel(props){
                 properties.slice(0,5).map( (item, i) => 
                     <Box style={{
                         opacity:'.9',
-                        backgroundImage:`url('${item.images[0].image_url}')`,
+                        backgroundImage:`url('${item.images[0].image.url}')`,
                         backgroundRepeat:'no-repeat',
                         backgroundSize:'cover',
+                        backgroundPosition:'center',
                         minHeight:`${!props.matches?'25vh':'70vh'}`,
                         borderRadius:'5px'
                     }}>

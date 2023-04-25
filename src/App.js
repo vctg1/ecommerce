@@ -9,6 +9,7 @@ import BuyService from './pages/BuyService';
 import {Houses} from './components/PropertyImports'
 import SearchResult from './pages/SearchResult';
 import RentService from './pages/RentService';
+import Footer from './components/Footer';
 
 export default function App() {
   const matches = useMediaQuery('(min-width:800px)');
@@ -39,6 +40,7 @@ export default function App() {
           <Route path={`/pesquisa/${search}`} element={<SearchResult search={search} setSearch={setSearch} properties={properties} matches={matches}/>}/>
         </Routes>
         </Grid>
+        <Footer matches={matches}/>
       </BrowserRouter>
     </Grid>
   );

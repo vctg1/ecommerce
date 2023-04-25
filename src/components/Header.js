@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
-import { Grid, Box, Button, Typography, AppBar} from "@mui/material";
+import { Grid, Box, Button, Typography, AppBar, Paper} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../images/logo.png';
 import HeaderMenu from "./HeaderMenu";
@@ -12,15 +12,21 @@ export default function Header(props){
     }
     return(
         <Grid>
-            <AppBar style={{transitionDelay:'300ms'}} position={`${!props.fixed || props.matches?'static':'fixed'}`}>
-                <Box margin='10px' display={props.matches?'inline-flex':'grid'} gridTemplateColumns='auto auto' columnGap={props.matches?'':'30vw'} alignItems='center'>
+            <Grid style={{transitionDelay:'300ms', backgroundColor:'white', position:`${!props.fixed || props.matches?'static':'fixed'}`}} width='100%'>
+                <Box display={'inline-flex'} 
+                    justifyContent={props.matches?'center':'space-between'} 
+                    width={props.matches?'50%':'65%'} 
+                    margin={props.matches?'1em':'1em 0 1em 0'}
+                >
+                    { !props.matches ? <Button onClick={()=>Open()}><MenuIcon/></Button>:''}
                     <Link to={'/'}>
                         <img height='60vh' src={logo}/>
                     </Link>
-                        { !props.matches ? <Button onClick={()=>Open()} style={{color:'white'}}><MenuIcon/></Button>:<></>}
+                </Box>
+                <Box display='flex' justifyContent={'center'}>
                     <HeaderMenu handleClick={handleClick} matches={props.matches}/>
                 </Box>
-            </AppBar>
+            </Grid>
         </Grid>
     )
 }

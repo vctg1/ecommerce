@@ -32,23 +32,15 @@ export default function HeaderMenu(props){
                     page:'comprar' 
                 },
                 {
-                    text:'vender',
-                    page:'vender' 
-                    },
-                {
                     text:'alugar',
                     page:'alugar' 
-                },
-                {
-                    text:'Estime sua casa',
-                    page:'estimar-casa' 
                 },
             ]
         },
         {
             id:4,
             menu:false,
-            text: 'Contato',
+            text: 'Entrar em contato',
             page: 'contato',
             children:''
         },
@@ -61,16 +53,25 @@ export default function HeaderMenu(props){
         },
     ]
     return(
-        <Collapse in={props.handleClick || props.matches} style={{gridColumn:'1 / span 2'}}>
+        <Collapse in={props.handleClick || props.matches} style={{gridColumn:'1 / span 2', position:`${props.matches?'':'absolute'}`, 
+            backgroundColor:`${props.matches?'':'white'}`}} orientation={props.matches?'':'horizontal'}>
             {
                 routes.map(item => 
-                <Box display={props.matches?'inline-flex':''}>
+                <Box display={'inline-block'} 
+                    width={props.matches?'max-content':'90vw'}
+                    padding={props.matches?'0':'10px'}
+                    >
                 {!item.menu?   
-                    <Link style={{textDecoration:'none', display:'flex', justifyContent:'center'}} to={`/${item.page}`}>
+                    <Link style={{textDecoration:'none', display:'grid'}} to={`/${item.page}`}>
                             <Typography variant='button' onMouseOver={()=>handleMouse(item)} onMouseOut={handleMouseOut}
                             style={{
-                                margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`, 
-                                color:`${mouseIn && activeId===item.id?'lightgreen':'white'}`}}>
+                                margin:`${props.matches?'0 3em 0 3em':'10px 0 10px 0'}`, 
+                                color:`${mouseIn && activeId===item.id?'#537FE7':'black'}`,
+                                fontWeight:'bold',
+                                textDecoration: `${mouseIn && activeId===item.id?'underline':''}`
+                            }}
+                                
+                                >
                                 {item.text}
                             </Typography>
                     </Link>:
@@ -78,40 +79,38 @@ export default function HeaderMenu(props){
                     style={{
                         textDecoration:'none', 
                         display:'flex', 
-                        justifyContent:'center', 
+                        justifyContent:'center',
                         flexDirection:'column',
-                        textAlign:'center',
                         height:`${props.matches?'5vh':''}`
                         }}>
                             <Typography variant="button" 
                             style={{
                                 cursor:'context-menu', 
-                                color:`${mouseIn && activeId===item.id?'lightgreen':'white'}`,
-                                margin:`${props.matches?'0 10px 0 10px':'10px 0 10px 0'}`}}>
+                                color:`${mouseIn && activeId===item.id?'#537FE7':'black'}`,
+                                fontWeight:'bold',
+                                textDecoration: `${mouseIn && activeId===item.id?'underline':''}`,
+                                margin:`${props.matches?'0 1em 0 1em':'10px 0 10px 0'}`}}>
                                 {item.text}
                             </Typography>
                             <Box>
-                            <Paper
+                            <Collapse in={mouseIn && activeId===item.id}
                             style={{ 
-                                display:'grid',
-                                scale:`${mouseIn && activeId===item.id?'100%':'0'}`,
-                                visibility:`${mouseIn && activeId===item.id?'visible':'hidden'}`,
+                                backgroundColor:'white',
                                 transition:'100ms',
                                 padding:'5px', 
-                                minWidth:`${props.matches?'':'90vw'}`,
-                                position:'absolute',
-                                gridTemplateColumns:'1fr 1fr'
+                                position:`${props.matches?'absolute':'relative'}`,
+                                marginLeft:'.5em'
                                 }}>
                                 {item.children.map(child => 
                                 <Link style={{textDecoration:'none'}} to={`/${child.page}`}>
-                                    <Button>
+                                    <Button color='secondary' margin={'10px'}>
                                         <b>
                                     {child.text}
                                         </b>
                                     </Button>
                                 </Link>
                                 )}
-                            </Paper>
+                            </Collapse>
                             </Box>
                     </Box>
                 }

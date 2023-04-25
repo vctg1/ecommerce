@@ -30,7 +30,7 @@ export default function HouseBox(props){
             <div onClick={handleClick} onMouseOver={handleMouse} onMouseOut={handleMouseOut} 
                 width='100%'
                 style={{
-                    backgroundImage:`url(${props.item.images[0] ? props.item.images[0].image_url :
+                    backgroundImage:`url(${props.item.images[0] ? props.item.images[0].image.url :
                     'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'})`,
                     height:'30vh',
                     opacity:'.9',
