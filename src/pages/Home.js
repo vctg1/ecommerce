@@ -29,7 +29,7 @@ export default function Home(props){
                     </Button>
                     </Link>
                 </Typography>
-                <HomeCarousel properties={props.properties} matches={props.matches}/>
+                <HomeCarousel matches={props.matches}/>
             </Paper>
         </Grid>
     )

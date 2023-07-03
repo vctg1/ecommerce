@@ -3,14 +3,22 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/service-components/Title";
 import BuyHousesList from "../components/service-components/BuyHousesList";
 import SearchBar from '../components/home-components/SearchBar'
+import { Houses } from "../components/ApiCrude";
 
 export default function RentService(props){
     let [search, setSearch] = useState(props.search);
     let [properties, setProperties] = useState([]);
+    async function SetProperties(){
+        const response = await Houses()
+        setProperties(response)
+    }
+    useEffect(()=>{
+        SetProperties();
+    },[])
     let [loading, setLoading] = useState(true);
     useEffect(()=>{
         if(search){
-        setProperties(props.properties.filter(item=> item.rent &&(
+        setProperties(properties?.filter(item=> item.rent &&(
             item.suburb.toLowerCase().includes(search.toLowerCase()) 
             || item.address.toLowerCase().includes(search)
             || item.rent.toString().includes(search)
@@ -18,11 +26,11 @@ export default function RentService(props){
             ));
         }
         else{
-            setProperties(props.properties.filter(item=>item.rent))
+            setProperties(properties?.filter(item=>item.rent))
         }
     },[sessionStorage.getItem('pesquisa')])
     useEffect(()=>{
-        if(properties.length > 0){
+        if(properties?.length > 0){
             setLoading(false);
         }
         else{
@@ -31,11 +39,11 @@ export default function RentService(props){
     },[properties])
     return(
         <Grid>
-            {search && properties.length < 1?
+            {search && properties?.length < 1?
             <></>
             :<Title title='Alugar imóvel' subtitle='Encontre sua moradia!' />}
             <SearchBar search={search} setSearch={setSearch}/>
-            {search && properties.length < 1? 
+            {search && properties?.length < 1? 
             <Title title='Não encontramos nenhum resultado para:' subtitle={sessionStorage.getItem('pesquisa')} />
             :<></>
             }

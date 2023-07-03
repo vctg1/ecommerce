@@ -10,7 +10,7 @@ export default function BuyService(props){
             <Title title='Comprar imóvel' subtitle='Encontre a melhor casa para você!' />
             <SearchBar search={props.search} setSearch={props.setSearch}/>
             <Grid>
-                <BuyHousesList matches={props.matches} properties={props.properties}/>
+                <BuyHousesList matches={props.matches}/>
             </Grid>
         </Grid>
     )

@@ -3,14 +3,22 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/service-components/Title";
 import SearchBar from "../components/home-components/SearchBar";
 import BuyHousesList from "../components/service-components/BuyHousesList"
+import { Houses } from "../components/ApiCrude";
 
 export default function SearchResult(props){
     let [search, setSearch] = useState(props.search);
     let [properties, setProperties] = useState([]);
+    async function SetProperties(){
+        const response = await Houses()
+        setProperties(response)
+    }
+    useEffect(()=>{
+        SetProperties();
+    },[])
     let [loading, setLoading] = useState(true);
     useEffect(()=>{
         if(search){
-        setProperties(props.properties.filter(item=> 
+        setProperties(properties?.filter(item=> 
             item.suburb.toLowerCase().includes(search.toLowerCase()) 
             || item.address.toLowerCase().includes(search)
             || item.price.toString().includes(search)
@@ -18,11 +26,11 @@ export default function SearchResult(props){
             ));
         }
         else{
-            setProperties(props.properties)
+            setProperties(properties)
         }
     },[sessionStorage.getItem('pesquisa')])
     useEffect(()=>{
-        if(properties.length > 0){
+        if(properties?.length > 0){
             setLoading(false);
         }
         else{
@@ -32,7 +40,7 @@ export default function SearchResult(props){
     return(
         <Grid marginTop={'1rem'}>
             <SearchBar search={search} setSearch={setSearch}/>
-            {properties.length > 0 && !loading ?
+            {properties?.length > 0 && !loading ?
             <Grid>
                 <Title title='Resultados da pesquisa para:' subtitle={sessionStorage.getItem('pesquisa')} />
                 <BuyHousesList properties={properties} matches={props.matches}/>

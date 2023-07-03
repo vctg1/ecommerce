@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Box, Grid, Typography, Collapse, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Grid, Typography, Collapse, Button, Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import HouseIcon from '@mui/icons-material/House';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 export default function Footer(props){
     let columns = [{
@@ -54,14 +56,14 @@ export default function Footer(props){
         else{setOpen(0)}
     }
     return(
-        <Grid style={{ paddingLeft: props.matches?'10rem':'2rem',
+        <Grid style={{ paddingLeft: props.matches?'10rem':'',
             color:'white', 
             backgroundImage: "linear-gradient(purple, #330044)"
             }}>
-            <Box>
+            <Typography variant="h5" textAlign={props.matches?'':'center'}>
             <HouseIcon/>
             <b>RentHouse</b>
-            </Box>
+            </Typography>
             <Grid display={props.matches?'grid':''} 
                 gridTemplateColumns={'1fr 1fr 1fr 1fr'}
             >
@@ -69,7 +71,8 @@ export default function Footer(props){
                 <Box display={col.column?'grid':''} 
                     height='max-content'
                 >
-                <Typography variant="h5" marginY={props.matches?'2rem':''}>
+                <Typography variant="h6" 
+                marginY={props.matches?'2rem':''}>
                     <b>{col.title}</b>
                 </Typography>
                 {col.items.map((item)=>
@@ -84,28 +87,33 @@ export default function Footer(props){
                 </Box>
             )
                     :columns.map((col)=>
-                    <Box>
-                        <Button onClick={()=>handleMouse(col)} style={{border:'none', 
-                            background:'none', 
-                            fontSize:'medium',
-                            color:'white'
-                            }}>
-                            <b>{col.title}</b>
-                        </Button>
-                        <Collapse in={open === col.id}>
+                    <Accordion
+                        style={{
+                            color:'white', 
+                            backgroundColor: 'transparent'
+                        }}
+                    >
+                        <AccordionSummary
+                        expandIcon={<ExpandMoreIcon color="white" />}
+                        style={{fontSize:'medium'}}>
+                            <Typography>
+                                <b>{col.title}</b>
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
                         {col.items.map((item)=>
-                        <Grid marginLeft={'1rem'}>
+                        <Grid marginLeft={'1rem'} display={col.column?'grid':'inline-grid'}>
                             <a href='/ecommerce' style={{
                                 textDecoration:'none',
-                                color:'white',
-                                marginBottom:'1rem'
+                                marginBottom:'1rem',
+                                color:'white'
                             }}>
                                 {item}
                             </a>
                             </Grid>
                             )}
-                        </Collapse>
-                    </Box>
+                        </AccordionDetails>
+                        </Accordion>
                 )
             }
             </Grid>
