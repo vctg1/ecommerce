@@ -15,9 +15,6 @@ export default function HomeCarousel(props){
     useEffect(()=>{
         SetProperties();
     },[])
-    useEffect(()=>{
-        console.log(properties);
-    },[properties])
     return (
         <Carousel navButtonsAlwaysVisible={props.matches} animation="fade" duration='500'>
             {

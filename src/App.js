@@ -11,6 +11,7 @@ import SearchResult from "./pages/SearchResult";
 import RentService from "./pages/RentService";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import RestrictedArea from "./pages/RestrictedArea";
 
 export default function App() {
   const matches = useMediaQuery("(min-width:800px)");
@@ -34,19 +35,14 @@ export default function App() {
         <Grid
           style={{
             padding: `${matches || !fixedState ? "10px" : "10vh 10px"}`,
-            minHeight:'33.1rem'
+            minHeight: "33.1rem",
           }}
         >
           <Routes>
             <Route
               path="/"
               element={
-                <Home
-                  search={search}
-                  setSearch={setSearch}
-                  
-                  matches={matches}
-                />
+                <Home search={search} setSearch={setSearch} matches={matches} />
               }
             />
             <Route
@@ -59,7 +55,6 @@ export default function App() {
                 <BuyService
                   search={search}
                   setSearch={setSearch}
-                  
                   matches={matches}
                 />
               }
@@ -70,7 +65,6 @@ export default function App() {
                 <RentService
                   search={search}
                   setSearch={setSearch}
-                  
                   matches={matches}
                 />
               }
@@ -81,20 +75,19 @@ export default function App() {
                 <SearchResult
                   search={search}
                   setSearch={setSearch}
-                  
                   matches={matches}
                 />
               }
             />
-            <Route
-              path={`/login`}
-              element={
-                <Login  matches={matches} />
-              }
-            />
+            <Route path={`/login`} element={<Login matches={matches} />} />
           </Routes>
         </Grid>
         <Footer matches={matches} />
+      </BrowserRouter>
+      <BrowserRouter basename={`/area-restrita`}>
+        <Routes>
+        <Route path={`/`} element={<RestrictedArea matches={matches} />} />
+        </Routes>
       </BrowserRouter>
     </Grid>
   );

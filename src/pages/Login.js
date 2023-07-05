@@ -10,12 +10,11 @@ export default function Login(props) {
     const response = await GetCustomerByCpf(data.cpf);
     if(response && response[0]?.password === data.senha){
         alert('Logado com sucesso');
-        console.log(response[0])
+        sessionStorage.setItem('login', data.cpf);
+        window.location.href = ('/area-restrita')
     }
     else(alert('informaçoes incorretas'))
   }
-  useEffect(()=>{
-  },[data])
   return (
     <Grid>
       <form onSubmit={handleSubmit}
