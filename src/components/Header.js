@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Grid, Box, Button, Typography, AppBar, Paper } from "@mui/material";
+import { Grid, Box, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../images/logo.png";
 import HeaderMenu from "./HeaderMenu";
@@ -16,7 +16,8 @@ export default function Header(props) {
         style={{
           transitionDelay: "300ms",
           backgroundColor: "white",
-          position: `${!props.fixed || props.matches ? "static" : "fixed"}`,
+          position: `${!props.fixed || props.matches ? "absolute" : "fixed"}`,
+          zIndex:2000
         }}
         width="100%"
       >
@@ -34,10 +35,15 @@ export default function Header(props) {
             ""
           )}
           <Link to={"/"}>
-            <img height="60vh" src={logo} />
+            <img height="60vh" src={logo} alt="" />
           </Link>
         </Box>
-        <Box display="flex" justifyContent={"center"}>
+        <Box
+          visibility={handleClick && !props.matches ? "hidden" : "visible"}
+          position={props.matches ? "" : "absolute"}
+          display="grid"
+          justifyContent={"center"}
+        >
           <HeaderMenu handleClick={handleClick} matches={props.matches} />
         </Box>
       </Grid>

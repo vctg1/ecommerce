@@ -18,7 +18,8 @@ export default function SearchBar(props){
     }
     useEffect(()=>{
         if(window.location.href.includes('pesquisa')
-        || window.location.href.includes('alugar')
+        || window.location.href.includes('alugar') 
+        || window.location.href.includes('comprar')
         ){
             setBlockSearch(true)
         }

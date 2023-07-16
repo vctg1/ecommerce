@@ -24,8 +24,8 @@ export default function InfoPapers(props){
     ]
     return(
         <Grid display='grid' columnGap='5em' rowGap='2em' margin='5%' gridTemplateColumns={props.matches?'1fr 1fr 1fr':'1fr'}>
-            {papers.map(item=>
-            <HomePaper item={item} />)}
+            {papers.map((item, key)=>
+            <HomePaper key={key} item={item} />)}
         </Grid>
     )
 }

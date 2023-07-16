@@ -1,5 +1,5 @@
-import { Box, Button, Collapse, Grid, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Button, Collapse, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HeaderMenu(props) {
@@ -54,26 +54,24 @@ export default function HeaderMenu(props) {
     {
         id: 6,
         menu: false,
-        text: "Login",
+        text: "Anunciar",
         page: "login",
         children: "",
       }
   ];
   return (
-    <Collapse
-      in={props.handleClick || props.matches}
+    <Box
       style={{
         gridColumn: "1 / span 2",
-        position: `${props.matches ? "" : "absolute"}`,
-        backgroundColor: `${props.matches ? "" : "white"}`,
+        backgroundColor: 'white',
       }}
-      orientation={props.matches ? "" : "horizontal"}
     >
-      {routes.map((item) => (
+      {routes.map((item, key) => (
         <Box
+        key={key}
           display={"inline-block"}
           width={props.matches ? "max-content" : "90vw"}
-          padding={props.matches ? "0" : "10px"}
+          padding={props.matches ? "0" : ".5rem"}
         >
           {!item.menu ? (
             <Link
@@ -107,7 +105,7 @@ export default function HeaderMenu(props) {
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
-                height: `${props.matches ? "5vh" : ""}`,
+                height: `${props.matches ? "100%" : ""}`,
               }}
             >
               <Typography
@@ -137,8 +135,9 @@ export default function HeaderMenu(props) {
                     marginLeft: ".5em",
                   }}
                 >
-                  {item.children.map((child) => (
+                  {item.children.map((child, key) => (
                     <Link
+                    key={key}
                       style={{ textDecoration: "none" }}
                       to={`/${child.page}`}
                     >
@@ -153,6 +152,6 @@ export default function HeaderMenu(props) {
           )}
         </Box>
       ))}
-    </Collapse>
+    </Box>
   );
 }

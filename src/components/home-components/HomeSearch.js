@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography} from '@mui/material';
+import { Paper, Typography} from '@mui/material';
 import houseBackground from '../../images/houseBackground.png'
 import SearchBar from './SearchBar';
 
@@ -8,7 +8,7 @@ export default function HomeSearch(props) {
         <Paper style={{
             backgroundImage: `url(${houseBackground})`, 
             backgroundPosition: 'center',
-            minHeight:'50vh',
+            minHeight:'33rem',
             backgroundSize:'cover'
             }}>  
             <Typography variant={props.matches? 'h3':'h4'} paddingY='2vh' textAlign='center' color='white' fontFamily='serif'>

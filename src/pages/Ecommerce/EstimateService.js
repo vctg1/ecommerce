@@ -1,6 +1,6 @@
-import { Grid, Typography, useMediaQuery } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
-import EstimateTitle from "../components/service-components/EstimateTitle";
+import EstimateTitle from "../../components/service-components/EstimateTitle";
 
 
 export default function EstimateService(props){

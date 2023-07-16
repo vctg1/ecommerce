@@ -1,14 +1,14 @@
 import { Box, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function HouseBox(props) {
+export default function AnnounceBox(props) {
   const navigate = useNavigate();
-  let [price, setPrice] = useState(props.item.price);
   let [mouseOver, setMouseOver] = useState(false);
   let handleMouse = (e) => {
     e.preventDefault();
     setMouseOver(true);
+    console.log(sessionStorage.getItem("property_id"));
   };
   let handleMouseOut = (e) => {
     e.preventDefault();
@@ -16,21 +16,15 @@ export default function HouseBox(props) {
   };
   let handleClick = (e) => {
     e.preventDefault();
-    navigate("/");
+    props.setPropertyId(props.property_id);
+    navigate(`${props.property_id}`);
   };
-  let [purchaseType, setPurchaseType] = useState("");
-  useEffect(() => {
-    if (window.location.href.includes("alugar")) {
-      setPrice(props.item.rent);
-      setPurchaseType(" - Aluguel");
-    }
-  }, []);
   return (
     <Paper
       style={{
         scale: mouseOver ? "110%" : "",
         transition: "100ms",
-        width: `${props.matches?'25vw':'100%'}`
+        width: "25rem",
       }}
       elevation={10}
       display="grid"
@@ -56,21 +50,22 @@ export default function HouseBox(props) {
           backgroundPosition: "center",
         }}
       ></Box>
-      <Typography
-        component="ul"
-        style={{
-          padding: "1.5rem",
-          height: "auto",
-        }}
-      >
+      <Typography component="ul" style={{ padding: "1.5rem" }}>
         <Typography variant="h5">{props.item.suburb}</Typography>
         <Typography component="li">{props.item.address}</Typography>
         <Typography component="li">
-          {price.toLocaleString("pt-br", {
+          {props.item.price.toLocaleString("pt-br", {
             style: "currency",
             currency: "BRL",
-          })}
-          {purchaseType}
+          })}{" "}
+          (Venda)
+        </Typography>
+        <Typography component="li">
+          {props.item.rent.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })}{" "}
+          (Aluguel)
         </Typography>
         <Typography component="li">
           <p

@@ -14,7 +14,7 @@ export default function HomePaper(props){
     return(
         <Paper elevation={mouseOver?10:3}>
             <Grid onMouseOver={handleMouse} onMouseOut={handleMouseOut} display='grid' padding='1em' gridTemplateColumns={'1fr 3fr'} >
-                <img style={{alignSelf:'center'}} src={props.item.image}/>
+                <img style={{alignSelf:'center'}} src={props.item.image} alt=''/>
                 <Box>
                 <Typography variant="h5">
                 {props.item.title}

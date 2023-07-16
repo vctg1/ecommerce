@@ -1,7 +1,7 @@
-import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
 import InputMask from "react-input-mask";
-import { GetCustomerByCpf } from "../components/ApiCrude";
+import { GetCustomerByCpf } from "../../components/ApiCrude";
 
 export default function Login(props) {
   const [data, setData] = useState({});
@@ -11,7 +11,7 @@ export default function Login(props) {
     if(response && response[0]?.password === data.senha){
         alert('Logado com sucesso');
         sessionStorage.setItem('login', data.cpf);
-        window.location.href = ('/area-restrita')
+        window.location.href = ('/area-restrita/meus-anuncios')
     }
     else(alert('informaçoes incorretas'))
   }
